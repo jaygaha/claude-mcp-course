@@ -233,3 +233,6 @@ Follow the numbered sections in order. Sections 1-3 build toward the `cli_projec
 
 - [Introduction on Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol)
 - [Model Context Protocol: Advanced Topics](https://anthropic.skilljar.com/model-context-protocol-advanced-topics)
+- [Introduction to agent skills
+](https://anthropic.skilljar.com/introduction-to-agent-skills)
+  - [Course Path](./010-Introduction-to-agent-skills/README.md)
