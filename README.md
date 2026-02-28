@@ -19,6 +19,7 @@ This repository contains structured learning materials that progress from core c
   - [Notifications](#notifications--004-advanced-topicsnotifications)
   - [Roots](#roots--004-advanced-topicsroots)
   - [StreamableHTTP](#streamablehttp--004-advanced-topicstransport-http)
+  - [transSum](#transsum--transsum-server)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [MCP Primitives at a Glance](#mcp-primitives-at-a-glance)
@@ -125,6 +126,32 @@ Demonstrates the **HTTP transport** with a browser-based protocol explorer. Walk
 
 See [`004-Advanced-Topics/transport-http/README.md`](004-Advanced-Topics/transport-http/README.md).
 
+### transSum — `transSum-server/`
+
+A modular document summarizer and translator that combines multiple MCP features in a single project. Uses Ollama (local) or Anthropic Claude as the LLM backend, with intelligent chunking and a map-reduce pipeline for long documents.
+
+**MCP features demonstrated:**
+
+- **Tools** — `summarize_text`, `translate_text`, `summarize_file`
+- **Resources** — server config, supported formats, provider info (static + templated URIs)
+- **Prompts** — reusable templates for summarize, translate, and file summarization workflows
+- **Notifications** — progress and log messages during chunk processing
+- **Sampling** — quality review of summaries via the client's LLM before returning results
+
+```
+transSum-server/
+├── src/transsum/
+│   ├── config.py              # Pydantic-validated settings
+│   ├── cli.py                 # Rich CLI
+│   ├── models/                # Ollama & Anthropic adapters
+│   ├── processing/            # Loader, chunker, map-reduce pipeline
+│   └── mcp/server.py          # FastMCP server (tools, resources, prompts, sampling)
+├── tests/                     # Mock-based test suite
+└── pyproject.toml
+```
+
+See [`transSum-server/README.md`](transSum-server/README.md) for full documentation.
+
 ---
 
 ## Installation
@@ -172,6 +199,25 @@ cp .env.example .env
 uv sync
 uv run client.py       # sampling, notifications
 uv run main.py         # roots, transport-http
+```
+
+### transSum
+
+```bash
+cd introduction-to-mcp/transSum-server
+
+# Configure environment
+cp .env.example .env
+# Edit .env → set MODEL_PROVIDER and keys as needed
+
+# Install and run
+uv sync
+
+# Run tests
+uv run pytest -v
+
+# Test with MCP Inspector
+uv run mcp dev src/transsum/mcp/server.py
 ```
 
 ### Dependencies
