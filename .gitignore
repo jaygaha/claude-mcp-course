@@ -22,5 +22,3 @@ Thumbs.db
 __pycache__/
 *.pyc
 .venv/
-
-transSum-server/
